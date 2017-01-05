@@ -72,9 +72,7 @@ export default class MoviesListing extends Component {
         });
       }
   }
-  _dataBlob(){
-    //let newArray =
-  }
+
   render() {
     if (!this.state.movies) {
       return(
