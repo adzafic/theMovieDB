@@ -17,6 +17,5 @@ export default class MenuButton extends Component {
   render() {
     return (
       <Icon name="menu"  size={25} color="#ffffff" onPress={this.opneDrawer.bind(this)}/>
-    );
   }
 }

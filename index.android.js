@@ -12,3 +12,4 @@ import {
 import index from './app/index';
 
 AppRegistry.registerComponent('theMovieDB', () => index);
+
