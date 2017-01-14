@@ -9,13 +9,13 @@ export default class MenuButton extends Component {
   constructor(props){
     super(props);
   }
-  openDrawer(){
-    this.props.customAction("_openDrawer");
+
+  opneDrawer(){
+    this.props.drawer.openDrawer();
   }
 
   render() {
     return (
-      <Icon name="menu"  size={25} color="#ffffff" onPress={this.openDrawer.bind(this)} />
-    );
+      <Icon name="menu"  size={25} color="#ffffff" onPress={this.opneDrawer.bind(this)}/>
   }
 }
