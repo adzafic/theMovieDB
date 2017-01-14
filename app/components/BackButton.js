@@ -23,7 +23,7 @@ export default class BackButton extends Component {
   }
 
   onPress(){
-    this.props.navigator.pop();
+    this.props.navigator.jumpBack();
   }
 
   render() {

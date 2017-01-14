@@ -56,7 +56,7 @@ export default class index extends Component {
   }
 
   Title(route, navigator, i, navState){
-    return (<Text>{route.name}</Text>);
+    return (<Text style={styles.title}>{route.name}</Text>);
   }
 
   configureScene(route, routeStack){
@@ -114,9 +114,10 @@ export default class index extends Component {
 
 const styles = StyleSheet.create({
   header:{
-    flex:1,
     backgroundColor: '#01d277',
-    padding:0,
+  },
+  title:{
+    color:'#ffffff',
   },
   drawer:{
     flex: 1,
