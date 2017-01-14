@@ -99,16 +99,16 @@ android {
     signingConfigs {
       release {
         storeFile file("theMovieDB.keystore")
-        storePassword "adzafic"
+        storePassword "dzafic"
         keyPassword "dzafic"
       }
     }
     signingConfigs {
         release {
             storeFile file("theMovieDB.keystore")
-            storePassword "adzafic"
+            storePassword "dzafic"
             keyAlias "my-key-alias"
-            keyPassword "adzafic"
+            keyPassword "dzafic"
         }
     }
     splits {
