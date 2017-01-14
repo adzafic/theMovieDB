@@ -6,14 +6,12 @@ import {
   View,
   TouchableHighlight,
   ListView,
-  Navigator
+  Navigator,
+  BackAndroid
 } from 'react-native';
 
 import { REQUEST_URL, POSTER_PATH } from './../../config/path';
 import MovieDetail from './MovieDetail';
-
-
-
 
 export default class MoviesListing extends Component {
   constructor(props) {
@@ -31,6 +29,10 @@ export default class MoviesListing extends Component {
 
   componentDidMount(){
       this.fetchData();
+      BackAndroid.addEventListener('hardwareBackPress',()=>{
+        BackAndroid.exitApp(1);
+        return this.props.navigator.pop() ;
+      });
   }
 
   fetchData(){
@@ -45,12 +47,20 @@ export default class MoviesListing extends Component {
       });
   }
 
-  nextPage(movie){
+  /*nextPage(movie){
     this.props.toRoute({
       name: movie.title,
       component: MovieDetail,
       data: movie,
       sceneConfig: Navigator.SceneConfigs.HorizontalSwipeJump,
+    });
+  }*/
+
+  _navigate(movie){
+    this.props.navigator.push({
+      name: movie.title ,
+      component: MovieDetail,
+      data: movie
     });
   }
 
@@ -84,13 +94,14 @@ export default class MoviesListing extends Component {
     return (
         <ListView dataSource={this.state.dataSource}
           renderRow={this.renderSingleMovie.bind(this)}
-          onEndReached={this.endReached.bind(this)}/>
+          onEndReached={this.endReached.bind(this)}
+          style={styles.ListView}/>
     );
   }
 
   renderSingleMovie(movie){
     return (
-      <TouchableHighlight style={styles.container} onPress={this.nextPage.bind(this,movie)}>
+      <TouchableHighlight style={styles.container} onPress={this._navigate.bind(this,movie)}>
         <View style={styles.container}>
           <Image style={styles.thumbnail}
             source={{ uri: POSTER_PATH + movie.poster_path }} />
@@ -112,6 +123,9 @@ export default class MoviesListing extends Component {
 }
 
 const styles = StyleSheet.create({
+  ListView:{
+    marginTop:55,
+  },
   container: {
     flex: 1,
     flexDirection:'row',

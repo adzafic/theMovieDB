@@ -15,9 +15,10 @@ export default class MovieDetail extends Component {
       backdrop_path ,
       poster_path,
       overview
-    } = this.props.data;
+    } = this.props.route.data;
+
     return (
-      <ScrollView>
+      <ScrollView style={styles.ScrollView}>
         <Image style={styles.backdrop}  source={{uri: BACKDROP_PATH + backdrop_path }} />
         <View style={styles.description}>
           <Text style={styles.title}>{title}</Text>
@@ -30,6 +31,9 @@ export default class MovieDetail extends Component {
 }
 
 const styles= StyleSheet.create({
+  ScrollView:{
+    marginTop:55,
+  },
   backdrop:{
     height: 230,
     marginBottom: 30,
