@@ -47,12 +47,11 @@ export default class SeriesListing extends Component {
       });
   }
 
-  nextPage(tv){
-    this.props.toRoute({
+  _navigate(tv){
+    this.props.navigator.push({
       name: tv.name,
       component: MovieDetail,
-      data: tv,
-      sceneConfig: Navigator.SceneConfigs.HorizontalSwipeJump,
+      data: tv
     });
   }
 
@@ -86,13 +85,14 @@ export default class SeriesListing extends Component {
     return (
         <ListView dataSource={this.state.dataSource}
           renderRow={this.renderSingleTv.bind(this)}
-          onEndReached={this.endReached.bind(this)}/>
+          onEndReached={this.endReached.bind(this)}
+          style={styles.ListView}/>
     );
   }
 
   renderSingleTv(tv){
     return (
-      <TouchableHighlight style={styles.container} onPress={this.nextPage.bind(this,tv)}>
+      <TouchableHighlight style={styles.container} onPress={this._navigate.bind(this,tv)}>
         <View style={styles.container}>
           <Image style={styles.thumbnail}
             source={{ uri: POSTER_PATH + tv.poster_path }} />
@@ -113,6 +113,9 @@ export default class SeriesListing extends Component {
 }
 
 const styles = StyleSheet.create({
+  ListView:{
+    marginTop:55,
+  },
   container: {
     flex: 1,
     flexDirection:'row',

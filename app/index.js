@@ -7,6 +7,7 @@ import {
   Text,
   DrawerLayoutAndroid,
   TouchableOpacity,
+  StatusBar
 } from 'react-native';
 //import Router from 'react-native-simple-router';
 import MoviesListing from './movies/MoviesListing';
@@ -35,7 +36,6 @@ export default class index extends Component {
   }
 
   componentDidMount(){
-    console.log(this);
     this.setState({
       drawer:this.refs.drawer,
     });
@@ -48,8 +48,9 @@ export default class index extends Component {
   LeftButton(route, navigator, i, navState){
     if(route.index ==0){
       return (<MenuButton navigator={navigator} {...this.props} {...this.state} />);
+    }else{
+      return (<BackButton navigator={navigator} route={route} {...this.props}/>);
     }
-    return (<BackButton navigator={navigator} {...this.props}/>);
   }
   RightButton(route, navigator, i, navState){
 
@@ -82,6 +83,10 @@ export default class index extends Component {
       drawerPosition={DrawerLayoutAndroid.positions.Left}
       renderNavigationView={() => navigationView}
       ref="drawer">
+        <StatusBar
+          backgroundColor="#01d277"
+          barStyle="light-content"
+          />
         <Navigator
           initialRoute={FIRST_ROUTE}
           renderScene={ this.renderNavigatiorScene }

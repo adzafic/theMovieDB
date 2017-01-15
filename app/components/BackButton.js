@@ -7,14 +7,17 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+
 export default class BackButton extends Component {
   constructor(props){
     super(props);
   }
 
-  componentDidMount() {
+  componentDidMount(){
     BackAndroid.addEventListener('hardwareBackPress',()=>{
-      //
+      console.log(this.props);
+      this.props.navigator.jumpBack();
+      return true;
     });
   }
 
