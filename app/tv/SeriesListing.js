@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import { REQUEST_URL, POSTER_PATH, getRequest } from './../../config/path';
-import MovieDetail from './../movies/MovieDetail';
+import SeriesDetail from './SeriesDetail';
 
 
 
@@ -50,7 +50,7 @@ export default class SeriesListing extends Component {
   _navigate(tv){
     this.props.navigator.push({
       name: tv.name,
-      component: MovieDetail,
+      component: SeriesDetail,
       data: tv
     });
   }
