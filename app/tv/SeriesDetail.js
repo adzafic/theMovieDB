@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { BACKDROP_PATH, POSTER_DETAIL_PATH } from './../../config/path';
+import Seasons from './Seasons';
 
 export default class SeriesDetail extends Component {
   render(){
@@ -14,7 +15,8 @@ export default class SeriesDetail extends Component {
       name,
       backdrop_path ,
       poster_path,
-      overview
+      overview,
+      id
     } = this.props.route.data;
 
     return (
@@ -25,6 +27,7 @@ export default class SeriesDetail extends Component {
           <Text style={styles.overview} >{overview}</Text>
         </View>
         <Image style={styles.poster}  elevation={5} source={{uri:POSTER_DETAIL_PATH + poster_path}}/>
+        <Seasons id={id} />
       </ScrollView>
     );
   }

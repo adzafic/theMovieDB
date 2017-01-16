@@ -61,7 +61,7 @@ export default class index extends Component {
   }
 
   configureScene(route, routeStack){
-   return Navigator.SceneConfigs.HorizontalSwipeJump;
+   return Navigator.SceneConfigs.FadeAndroid;
  }
 
  _navigate(){
