@@ -27,7 +27,7 @@ export default class SeriesDetail extends Component {
           <Text style={styles.overview} >{overview}</Text>
         </View>
         <Image style={styles.poster}  elevation={5} source={{uri:POSTER_DETAIL_PATH + poster_path}}/>
-        <Seasons id={id} />
+        <Seasons id={id} name={name} navigator={this.props.navigator}/>
       </ScrollView>
     );
   }

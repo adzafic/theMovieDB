@@ -4,10 +4,13 @@ import {
   Text,
   Image,
   View,
-  ViewPagerAndroid
+  ViewPagerAndroid,
+  TouchableHighlight,
+  Navigator
 } from 'react-native';
 import _ from 'lodash';
 import { POSTER_DETAIL_PATH , getRequestTv } from './../../config/path';
+import SeasonEpisodes from './SeasonEpisodes';
 
 export default class Seasons extends Component {
   constructor(props){
@@ -30,27 +33,40 @@ export default class Seasons extends Component {
           seasons: responseData.seasons,
         });
       });
-      console.log(url);
+  }
+
+  _navigate(obj){
+    this.props.navigator.push({
+      name: `${obj.season_number}: ${this.props.name}`,
+      component: SeasonEpisodes,
+      data: obj,
+      season_id: this.props.id,
+    });
   }
 
   renderSingleView(obj){
     let {
       season_number,poster_path,episode_count
-    }= obj;
+    } = obj;
     return(
       <View style={styles.season} key={season_number}>
-        <Image style={styles.poster}  elevation={5} source={{uri:POSTER_DETAIL_PATH + poster_path}}/>
-        <View style={styles.justify}>
-          <Text style={styles.textAlign}>Sesion: {season_number}</Text>
-          <Text style={styles.textAlign}>Nuemro Episodios {episode_count}</Text>
-        </View>
+        <TouchableHighlight   onPress={this._navigate.bind(this,obj)}>
+          <View>
+            <Image style={styles.poster}  elevation={5} source={{uri:POSTER_DETAIL_PATH + poster_path}}/>
+            <View style={styles.justify}>
+              <Text style={styles.textAlign}>Sesion: {season_number}</Text>
+              <Text style={styles.textAlign}>Nuemro Episodios {episode_count}</Text>
+            </View>
+          </View>
+        </TouchableHighlight>
       </View>
+
     );
   }
 
   render(){
 
-    let SeasonsView = _.map(this.state.seasons,this.renderSingleView);
+    let SeasonsView = _.map(this.state.seasons,this.renderSingleView.bind(this));
     return (
       <ViewPagerAndroid
         style={styles.pager}
@@ -71,6 +87,7 @@ const styles= StyleSheet.create({
     flex:1,
     height:300,
     width: 650,
+    backgroundColor:'red',
   },
   season:{
     flex:1,
